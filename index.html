@@ -7,9 +7,9 @@
     <!-- الأكواد الخاصة بالرابط وصورته عند المشاركة على واتساب -->
     <meta property="og:title" content="Aya & Mohamed | Wedding Invitation">
     <meta property="og:description" content="Celebrate Aya & Mohamed – Friday, January 21, 2027 at 7:00 PM">
-    <meta property="og:url" content="https://github.io">
-    <meta property="og:image" content="https://github.ioaya_mohamed.jpg">
-    <meta property="og:secure_url" content="https://github.ioaya_mohamed.jpg">
+    <meta property="og:url" content="https://Mohamed-Aya-invitation.github.io/Wedding/">
+    <meta property="og:image" content="https://github.io">
+    <meta property="og:secure_url" content="https://github.io">
     <meta property="og:type" content="website">
 
     <style>
@@ -78,40 +78,29 @@
             top: 50%;
             transform: translateY(-120px);
             transform-origin: top;
-            /* ⏱️ إبطاء حركة فتح الغطاء إلى 1.4 ثانية لقفل انسيابي ناعم */
-            transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* سرعة الحركة انسيابية وهادئة */
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 40;
-            cursor: pointer;
             left: calc(50% - 180px);
             filter: drop-shadow(0 4px 5px rgba(0,0,0,0.3));
         }
 
-        /* 🟡 الختم الشمعي الدائري (تم تصغير المقاس هنا بناءً على طلبك) */
+        /* 🟡 الختم الشمعي الدائري الصغير الأنيق */
         .seal-button {
             position: absolute;
-            top: -15px; /* تم ترحيله للأعلى لتوسيط الدائرة الصغيرة بدقة */
-            left: -32.5px; /* نصف قطر الحجم الجديد لتوسيط مثالي كاملاً */
+            top: -15px; 
+            left: -32.5px; 
             background: radial-gradient(circle, #f7e7a7 0%, #d4af37 100%);
             color: #4a1e1b;
             border: 2px solid #b89326;
-            width: 65px;  /* 🔘 تم تصغير القطر من 90px إلى 65px ليصبح رقيقاً */
-            height: 65px; /* 🔘 تم تصغير الارتفاع ليصبح دائرياً متناسقاً */
-            font-size: 10px; /* تصغير حجم الخط ليتناسب مع الدائرة الجديدة */
-            font-weight: bold;
+            width: 65px;  
+            height: 65px; 
             border-radius: 50%;
-            cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            line-height: 1.3;
             z-index: 50;
             animation: pulse 2s infinite;
-            transition: opacity 0.4s ease, transform 0.2s;
-        }
-        .seal-button:active {
-            transform: scale(0.9);
+            transition: opacity 0.6s ease;
+            pointer-events: none; /* جعل الختم مجرد زينة ولا يشترط الضغط عليه بالتحديد */
         }
 
         @keyframes pulse {
@@ -132,13 +121,12 @@
             left: calc(50% - 165px);
             transform: translateY(-20%) scale(0.6);
             opacity: 0;
-            /* ⏱️ إبطاء حركة صعود وخروج الورقة لتستغرق 1.5 ثانية كاملة */
-            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease, opacity 0.5s ease;
+            /* صعود انسيابي هادئ ومريح للعين */
+            transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease, opacity 0.6s ease;
             border-radius: 8px;
             overflow: hidden;
         }
 
-        /* الصورة بداخل كارت الدعوة */
         .letter img {
             width: 100%;
             height: 100%;
@@ -146,7 +134,7 @@
             display: block;
         }
 
-        /* زر الموقع المدمج أسفل الكارت */
+        /* زر الموقع */
         .location-btn {
             position: absolute;
             bottom: 35px;
@@ -165,40 +153,33 @@
             z-index: 100;
         }
 
-        /* 📜 تفعيل الترتيب الحركي عند الضغط وفك القفل */
-        
-        /* 1. دوران وانفتاح الغطاء العلوي لأعلى */
+        /* 📜 تفعيل الترتيب الحركي التلقائي */
         .stage.open .envelope-flap {
             transform: translateY(-120px) rotateX(180deg);
             z-index: 1;
-            filter: drop-shadow(0 -4px 5px rgba(0,0,0,0.2));
         }
 
-        /* 2. انطلاق الكارت صعوداً من قاع الظرف ببطء انسيابي */
         .stage.open .letter {
             transform: translateY(-50%) scale(1.08);
             opacity: 1;
             z-index: 100;
         }
 
-        /* إخفاء الختم عند الفتح */
         .stage.open .seal-button {
             opacity: 0;
-            pointer-events: none;
         }
 
-        /* النص الترحيبي الثابت أعلى الظرف */
+        /* النص الترحيبي */
         .hint-text {
             position: absolute;
             top: 6vh;
             color: #4a1e1b;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             text-align: center;
             width: 100%;
             transition: opacity 0.5s ease;
             z-index: 5;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .stage.open .hint-text {
             opacity: 0;
@@ -207,13 +188,12 @@
 </head>
 <body>
 
-    <div class="hint-text">دعوة زفاف خاصة ✉️</div>
+    <div class="hint-text">المس الشاشة لفتح الدعوة ✉️</div>
 
     <div id="weddingStage" class="stage">
-        
-        <!-- غطاء الظرف ومثبت به الختم الذهبي الصغير المطور -->
+        <!-- غطاء الظرف ومثبت به الختم الذهبي -->
         <div class="envelope-flap" id="flap">
-            <button class="seal-button" onclick="openWeddingEnvelope()">اضغط<br>لفتح الدعوة</button>
+            <div class="seal-button"></div>
         </div>
         
         <!-- بودي وجيب المظروف -->
@@ -221,11 +201,9 @@
             <div class="envelope-front"></div>
         </div>
 
-        <!-- 📜 الورقة التي ستصعد من الداخل بهدوء وبطء رائع -->
+        <!-- 📜 كارت الدعوة المخفي بالداخل -->
         <div class="letter" id="letter">
             <img src="aya_mohamed.jpg" alt="دعوة زفاف آية ومحمد">
-            
-            <!-- زر الخريطة المدمج بالكارت -->
             <a href="https://goo.gl" class="location-btn">
                 TAP TO GET THE LOCATION 📍
             </a>
@@ -238,16 +216,27 @@
     </audio>
 
     <script>
-        function openWeddingEnvelope() {
-            const audio = document.getElementById('weddingAudio');
-            const stage = document.getElementById('weddingStage');
+        const stage = document.getElementById('weddingStage');
+        const audio = document.getElementById('weddingAudio');
 
+        // دالة تشغيل الفتح التلقائي والموسيقى معاً فور أول تفاعل للضيف
+        function triggerAutomaticOpen() {
             // تشغيل الموسيقى
-            audio.play().catch(error => console.log(error));
+            audio.play().catch(error => console.log("المتصفح حجب التشغيل التلقائي"));
             
-            // بدء حركة الفتح وصعود الورقة
+            // فتح الظرف وصعود الكارت تلقائياً ببطء
             stage.classList.add('open');
+            
+            // تنظيف وإزالة المستمعين لعدم تكرار الحركة مع كل لمسة
+            document.removeEventListener('click', triggerAutomaticOpen);
+            document.removeEventListener('touchstart', triggerAutomaticOpen);
+            document.removeEventListener('scroll', triggerAutomaticOpen);
         }
+
+        // الاستماع لأي لمسة أو حركة شاشة من الضيف لتفعيل الفتح الذكي فوراً
+        document.addEventListener('click', triggerAutomaticOpen);
+        document.addEventListener('touchstart', triggerAutomaticOpen);
+        document.addEventListener('scroll', triggerAutomaticOpen);
     </script>
 
 </body>
