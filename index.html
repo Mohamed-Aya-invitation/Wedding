@@ -97,6 +97,36 @@
             TAP TO GET THE LOCATION 📍
         </a>
     </div>
+<audio id="weddingAudio" loop preload="auto">
+    <source src="wedding-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById('weddingAudio');
+    function playMusic() {
+        audio.play().then(() => {
+            removeAllListeners();
+        }).catch(error => {
+            console.log("المتصفح ينتظر التفاعل");
+        });
+    }
+    function handleUserInteraction() {
+        playMusic();
+    }
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction); 
+    document.addEventListener('scroll', handleUserInteraction);     
+    window.addEventListener('keydown', handleUserInteraction);      
+    function removeAllListeners() {
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('scroll', handleUserInteraction);
+        window.removeEventListener('keydown', handleUserInteraction);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        playMusic();
+    });
+</script>
 
 </body>
 </html>
