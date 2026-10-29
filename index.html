@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف</title>
+    <style>
+        /* إعدادات الخلفية العامة */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #bc766c; /* اللون الوردي الداكن المحيط */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية الكارت المخصصة للهواتف */
+        .invitation-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #bc766c;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* صورة البطاقة الرئيسية (الأكريليك) */
+        .card-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        /* زر الموقع الجغرافي */
+        .location-btn {
+            display: inline-block;
+            width: 90%;
+            background-color: #4a1e1b; /* اللون العنابي الداكن للزر */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 0;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        .location-btn:hover {
+            background-color: #361412;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <!-- استبدل اسم الصورة بملف التصميم الخاص بك -->
+        <img src="wedding_card.jpg" alt="دعوة زفاف" class="card-image">
+        
+        <!-- زر التوجيه إلى خرائط جوجل -->
+        <a href="https://google.com" target="_blank" class="location-btn">
+            TAP TO GET THE LOCATION 📍
+        </a>
+    </div>
+
+</body>
+</html>
