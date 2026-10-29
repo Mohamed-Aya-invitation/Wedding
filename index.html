@@ -16,7 +16,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #eae6df; /* خلفية ناعمة تبرز مجسم الظرف */
+            background-color: #eae6df;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,7 +42,7 @@
             position: absolute;
             width: 360px;
             height: 240px;
-            background-color: #3b1614; /* عمق الظرف من الداخل */
+            background-color: #3b1614;
             box-shadow: 0 20px 40px rgba(0,0,0,0.35);
             z-index: 10;
             top: 50%;
@@ -50,7 +50,7 @@
             border-radius: 4px;
         }
 
-        /* جيب الظرف الأمامي (تصميم مثلثي حقيقي محكم مع ظلال تفصل الأطراف) */
+        /* جيب الظرف الأمامي */
         .envelope-front {
             position: absolute;
             top: 0;
@@ -61,10 +61,10 @@
             border-right: 180px solid #4a1e1b;
             border-bottom: 120px solid #431a17;
             border-top: 120px solid transparent;
-            z-index: 30; /* يحجب الورقة تماماً بالداخل */
+            z-index: 30;
             pointer-events: none;
             border-radius: 0 0 4px 4px;
-            filter: drop-shadow(0 -2px 5px rgba(0,0,0,0.2)); /* لإبراز ثنايا الظرف الحقيقية */
+            filter: drop-shadow(0 -2px 5px rgba(0,0,0,0.2));
         }
 
         /* غطاء الظرف العلوي الواقعي */
@@ -74,64 +74,66 @@
             height: 0;
             border-left: 180px solid transparent;
             border-right: 180px solid transparent;
-            border-top: 130px solid #54221f; /* لون أفتح قليلاً لإبراز الغطاء */
+            border-top: 130px solid #54221f;
             top: 50%;
             transform: translateY(-120px);
             transform-origin: top;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 40; /* يغطي الكارت تماماً في البداية */
+            /* ⏱️ إبطاء حركة فتح الغطاء إلى 1.4 ثانية لقفل انسيابي ناعم */
+            transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 40;
             cursor: pointer;
             left: calc(50% - 180px);
             filter: drop-shadow(0 4px 5px rgba(0,0,0,0.3));
         }
 
-        /* 🟡 الختم الشمعي الدائري لفتح الظرف */
+        /* 🟡 الختم الشمعي الدائري (تم تصغير المقاس هنا بناءً على طلبك) */
         .seal-button {
             position: absolute;
-            top: -25px;
-            left: -45px;
+            top: -15px; /* تم ترحيله للأعلى لتوسيط الدائرة الصغيرة بدقة */
+            left: -32.5px; /* نصف قطر الحجم الجديد لتوسيط مثالي كاملاً */
             background: radial-gradient(circle, #f7e7a7 0%, #d4af37 100%);
             color: #4a1e1b;
             border: 2px solid #b89326;
-            width: 90px;
-            height: 90px;
-            font-size: 14px;
+            width: 65px;  /* 🔘 تم تصغير القطر من 90px إلى 65px ليصبح رقيقاً */
+            height: 65px; /* 🔘 تم تصغير الارتفاع ليصبح دائرياً متناسقاً */
+            font-size: 10px; /* تصغير حجم الخط ليتناسب مع الدائرة الجديدة */
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             line-height: 1.3;
-            z-index: 50; /* في المقدمة دائماً للضغط */
+            z-index: 50;
             animation: pulse 2s infinite;
-            transition: opacity 0.3s ease, transform 0.2s;
+            transition: opacity 0.4s ease, transform 0.2s;
         }
         .seal-button:active {
             transform: scale(0.9);
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7), 0 6px 20px rgba(0,0,0,0.4); }
-            70% { transform: scale(1.04); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0), 0 6px 20px rgba(0,0,0,0.3); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 6px 20px rgba(0,0,0,0.4); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6), 0 4px 12px rgba(0,0,0,0.4); }
+            70% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0), 0 4px 12px rgba(0,0,0,0.3); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 4px 12px rgba(0,0,0,0.4); }
         }
 
-        /* 📜 الورقة (كارت الدعوة) - مخفية كلياً بالأسفل والداخل في البداية */
+        /* 📜 الورقة (كارت الدعوة) */
         .letter {
             position: absolute;
             width: 330px;
             height: 460px;
             background-color: #ffffff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 5; /* خلف جيب الظرف تماماً لضمان عدم تسريبها */
+            z-index: 5;
             top: 50%;
             left: calc(50% - 165px);
-            transform: translateY(-20%) scale(0.6); /* مقلصة ومسحوبة للداخل لئلا تظهر */
+            transform: translateY(-20%) scale(0.6);
             opacity: 0;
-            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease, opacity 0.4s ease;
+            /* ⏱️ إبطاء حركة صعود وخروج الورقة لتستغرق 1.5 ثانية كاملة */
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease, opacity 0.5s ease;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -168,15 +170,15 @@
         /* 1. دوران وانفتاح الغطاء العلوي لأعلى */
         .stage.open .envelope-flap {
             transform: translateY(-120px) rotateX(180deg);
-            z-index: 1; /* يرجع للخلف فوراً لتصعد الورقة أمامه */
+            z-index: 1;
             filter: drop-shadow(0 -4px 5px rgba(0,0,0,0.2));
         }
 
-        /* 2. انطلاق الكارت صعوداً من قاع الظرف ليستقر بالسنتر مكبراً أمامه */
+        /* 2. انطلاق الكارت صعوداً من قاع الظرف ببطء انسيابي */
         .stage.open .letter {
-            transform: translateY(-50%) scale(1.08); /* وقوف تام في منتصف الشاشة وتكبير الحجم */
+            transform: translateY(-50%) scale(1.08);
             opacity: 1;
-            z-index: 100; /* يظهر فوق كل الحواف والجوانب كلياً */
+            z-index: 100;
         }
 
         /* إخفاء الختم عند الفتح */
@@ -209,17 +211,17 @@
 
     <div id="weddingStage" class="stage">
         
-        <!-- غطاء الظرف ومثبت به الختم الذهبي -->
+        <!-- غطاء الظرف ومثبت به الختم الذهبي الصغير المطور -->
         <div class="envelope-flap" id="flap">
             <button class="seal-button" onclick="openWeddingEnvelope()">اضغط<br>لفتح الدعوة</button>
         </div>
         
-        <!-- بودي وجيب المظروف المجسم مع ظلال الأطراف الثنائية -->
+        <!-- بودي وجيب المظروف -->
         <div class="envelope">
             <div class="envelope-front"></div>
         </div>
 
-        <!-- 📜 الورقة (كارت الدعوة) المحشور بالداخل تماماً وسيخرج فور الضغط -->
+        <!-- 📜 الورقة التي ستصعد من الداخل بهدوء وبطء رائع -->
         <div class="letter" id="letter">
             <img src="aya_mohamed.jpg" alt="دعوة زفاف آية ومحمد">
             
@@ -240,8 +242,8 @@
             const audio = document.getElementById('weddingAudio');
             const stage = document.getElementById('weddingStage');
 
-            // تشغيل الموسيقى المرفوعة
-            audio.play().catch(error => console.log("حجب المتصفح التلقائي للصوت:", error));
+            // تشغيل الموسيقى
+            audio.play().catch(error => console.log(error));
             
             // بدء حركة الفتح وصعود الورقة
             stage.classList.add('open');
