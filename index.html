@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف آية ومحمد</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* لون الخلفية متناسق تماماً مع درجات اللون الوردي/القرميدي الدافئ للدعوة الأصلية */
+            background-color: #C07A72; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .invitation-container {
+            max-width: 100%;
+            width: 450px; /* العرض المثالي لشاشات الموبايل */
+            padding: 20px 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .invitation-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px; /* زوايا دائرية ناعمة لتناسب شكل الأكريليك القوسي في صورتك */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            margin-bottom: 25px;
+        }
+        /* تصميم زر اللوكيشن بلون أحمر قرميدي داكن متناسق مع ظلال الصورة */
+        .location-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #5C2A24; /* لون دافئ وداكن يتماشى مع طابع الفرح الرائع */
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.2s;
+            margin-top: 10px;
+        }
+        .location-btn:active {
+            transform: scale(0.98);
+            background-color: #441E19;
+        }
+        .location-btn-icon {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <!-- 1. صورتك الجاهزة لـ آية ومحمد (تأكد من تسميتها aya_mohamed.jpg في المجلد) -->
+        <img src="aya_mohamed.jpg" alt="Aya & Mohamed Wedding Invitation" class="invitation-image">
+        
+        <!-- 2. زر الخريطة التفاعلي الموجه مباشرة إلى دار الإشارة بمدينة نصر -->
+        <a href="https://goo.gl" target="_blank" class="location-btn">
+            <span class="location-btn-icon">📍</span> TAP TO GET THE LOCATION
+        </a>
+    </div>
+
+</body>
+</html>
