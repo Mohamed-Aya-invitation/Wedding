@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aya & Mohamed | Wedding Invitation</title>
+    <!-- الأكواد الخاصة بالرابط وصورته عند المشاركة على واتساب -->
     <meta property="og:title" content="Aya & Mohamed | Wedding Invitation">
-    <meta property="og:description" content="Celebrate Aya & Mohamed – Friday, January 21, 2027 at 7:00 PM">
-    <meta property="og:url" content="https://github.io">
-    <meta property="og:image" content="https://github.ioaya_mohamed.jpg">
-    <meta property="og:secure_url" content="https://github.ioaya_mohamed.jpg">
+    <meta property="og:description" content="Celebrate Aya & Mohamed – Friday, January 22, 2027 at 7:00 PM">
+    <meta property="og:url" content="https://Mohamed-Aya-invitation.github.io/Wedding/">
+    <meta property="og:image" content="https://github.io">
+    <meta property="og:secure_url" content="https://github.io">
     <meta property="og:type" content="website">
 
-    <!-- استيراد خط عربي أنيق لتنسيق العبارات -->
+    <!-- استيراد الخطوط الإنجليزية الانسيابية لتطابق التصميم الأصلي تماماً -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Amiri:ital@1&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            /* 🌍 خلفية متحركة متدرجة فاخرة تتغير بنعومة لتزيد من جمال العرض */
-            background: linear-gradient(135deg, #eae6df 0%, #f5f2eb 50%, #dfd9cf 100%);
-            background-size: 400% 400%;
-            animation: gradientBg 12s ease infinite;
+            background-color: #cb9b8c; /* لون دافئ مستوحى من درجات خلفية دعوتك المرفقة */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        @keyframes gradientBg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* حاوية العرض ثلاثية الأبعاد */
         .stage {
             position: relative;
             width: 100%;
@@ -49,19 +42,20 @@
             perspective: 1500px;
         }
 
-        /* ✉️ مجسم الظرف الرئيسي */
+        /* ✉️ مجسم وهيكل الظرف الرئيسي */
         .envelope {
             position: absolute;
             width: 360px;
             height: 240px;
             background-color: #3b1614;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
             z-index: 10;
             top: 50%;
             transform: translateY(-50%);
             border-radius: 4px;
         }
 
+        /* جيب الظرف الأمامي لإخفاء الكارت */
         .envelope-front {
             position: absolute;
             top: 0;
@@ -78,6 +72,7 @@
             filter: drop-shadow(0 -2px 5px rgba(0,0,0,0.25));
         }
 
+        /* غطاء الظرف العلوي الواقعي البطيء */
         .envelope-flap {
             position: absolute;
             width: 0;
@@ -94,6 +89,7 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
         }
 
+        /* 🟡 الختم الشمعي الدائري الصغير الأنيق */
         .seal-button {
             position: absolute;
             top: -15px; 
@@ -116,83 +112,163 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 4px 12px rgba(0,0,0,0.4); }
         }
 
-        /* 📜 كارت الدعوة (الورقة) المطور بتصميم ملكي فاخر مدمج به الكلام الجميل المنسق */
+        /* 📜 الورقة (تعتمد على صورتك الأصلية كخلفية نقية ويظهر فوقها الكلام برمجياً) */
         .letter {
             position: absolute;
             width: 330px;
             height: 480px;
-            /* تصميم داخلي فاخر باللون العنابي العتيق بلمسات ذهبية */
-            background: linear-gradient(135deg, #4a1e1b 0%, #2b1110 100%);
-            border: 3px solid #d4af37; /* إطار ذهبي ملكي يحيط بالدعوة */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            /* استخدام صورتك كخلفية نقية بدون أي نصوص ثابتة مسبقاً */
+            background-image: url('aya_mohamed.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             z-index: 5;
             top: 50%;
             left: calc(50% - 165px);
             transform: translateY(-20%) scale(0.6);
             opacity: 0;
+            /* صعود وخروج انسيابي فخم وبطيء مريح للعين */
             transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease, opacity 0.6s ease;
-            border-radius: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            color: #f7e7a7; /* لون الكتابة الذهبي الناعم */
+            justify-content: flex-start;
+            padding-top: 50px;
+            color: #ffffff;
             text-align: center;
         }
 
-        /* ✍️ تنسيق الكلام الجميل داخل الدعوة */
-        .card-title {
-            font-family: 'Amiri', serif;
-            font-size: 26px;
-            margin: 0 0 10px 0;
-            color: #d4af37;
+        /* ✍️ تأثيرات ظهور الكلام التدريجي الأنيق فوق اللوحة عند الفتح */
+        .text-content {
+            opacity: 0;
+            transform: translateY(15px);
+            /* يبدأ النص بالظهور والارتفاع بعد اكتمال صعود الكارت بنصف ثانية لجودة بصرية مبهرة */
+            transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stage.open .text-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 📜 تنسيق محاكاة نصوص كارت الدعوة الأصلي بدقة */
+        .invitation-intro {
+            font-size: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .name-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 52px;
+            margin: 0;
             font-weight: normal;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
-        .card-names {
-            font-family: 'Amiri', serif;
-            font-size: 28px;
-            font-weight: bold;
+
+        .ampersand {
+            font-size: 18px;
             margin: 5px 0;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            font-family: 'Cinzel', serif;
+            color: rgba(255, 255, 255, 0.7);
         }
-        .card-text {
-            font-size: 13px;
-            line-height: 1.8;
-            margin: 15px 0;
-            max-width: 90%;
+
+        .date-section {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+        }
+
+        .date-day {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .date-main {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .date-divider {
+            opacity: 0.5;
             font-weight: 300;
         }
-        .card-date {
-            font-size: 14px;
-            color: #d4af37;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 5px 15px;
-            margin-top: 10px;
-            font-weight: bold;
+
+        .date-time {
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.85);
         }
 
-        /* زر الموقع الأنيق المتناسق مع ألوان الكارت */
-        .location-btn {
-            margin-top: 25px;
-            background: linear-gradient(135deg, #f7e7a7 0%, #d4af37 100%);
-            color: #4a1e1b;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 30px;
+        .diamond-separator {
+            font-size: 10px;
+            margin: 20px 0 15px 0;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .venue-section {
+            font-family: 'Cinzel', serif;
             font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            white-space: nowrap;
-            transition: transform 0.2s;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
-        .location-btn:active { transform: scale(0.95); }
 
-        /* 📜 تأثيرات الفتح */
+        .venue-details {
+            font-size: 8px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            max-width: 80%;
+        }
+
+        /* زر الخريطة المدمج بالورقة المرتفعة */
+        .location-btn {
+            position: absolute;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a0a09;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 7px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            white-space: nowrap;
+            z-index: 110;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            transition: opacity 1s ease 0.8s;
+        }
+
+        .stage.open .location-btn {
+            opacity: 1;
+        }
+
+        /* 📜 تأثيرات الفتح التدريجي البطيء */
         .stage.open .envelope-flap {
             transform: translateY(-120px) rotateX(180deg);
             z-index: 1;
@@ -211,7 +287,7 @@
             position: absolute;
             top: 5vh;
             color: #4a1e1b;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
             width: 100%;
@@ -224,59 +300,7 @@
 </head>
 <body>
 
-    <div class="hint-text">لمس الشاشة لفتح الدعوة ✉_</div>
+    <div class="hint-text">TAP ANYWHERE TO OPEN THE ENVELOPE ✉️</div>
 
     <div id="weddingStage" class="stage">
-        <!-- غطاء الظرف ومثبت به الختم الذهبي -->
-        <div class="envelope-flap" id="flap">
-            <div class="seal-button"></div>
-        </div>
-        
-        <!-- بودي وجيب المظروف -->
-        <div class="envelope">
-            <div class="envelope-front"></div>
-        </div>
-
-        <!-- 📜 الكارت الملكي المطور المكتوب بداخله أرقى الكلمات -->
-        <div class="letter" id="letter">
-            <div class="card-title">دعوة زفاف</div>
-            <div class="card-names">آية & محمد</div>
-            
-            <p class="card-text">
-                بأجمل عبارات الترحيب وبقلوب تملؤها البهجة والسرور، نتشرف بدعوتكم لمشاركتنا فرحتنا بمناسبة عقد قراننا وزفافنا. حضوركم يكتمل به أنسنا وتسعد به ليالينا.
-            </p>
-            
-            <div class="card-date">
-                الجمعة، ٢١ يناير ٢٠٢٧ م
-            </div>
-            
-            <!-- زر الخريطة المنسق بداخل الكارت -->
-            <a href="https://goo.gl" class="location-btn">
-                موقع الحفل 📍
-            </a>
-        </div>
-    </div>
-
-    <!-- عنصر تشغيل الصوت المخفي -->
-    <audio id="weddingAudio" loop preload="auto">
-        <source src="wedding-music.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        const stage = document.getElementById('weddingStage');
-        const audio = document.getElementById('weddingAudio');
-
-        function triggerAutomaticOpen() {
-            audio.play().catch(error => console.log("المتصفح حجب الصوت"));
-            stage.classList.add('open');
-            
-            // إزالة المستمعين لمنع تكرار الحركة
-            document.removeEventListener('click', triggerAutomaticOpen);
-            document.removeEventListener('touchstart', triggerAutomaticOpen);
-            document.removeEventListener('scroll', triggerAutomaticOpen);
-        }
-
-        document.addEventListener('click', triggerAutomaticOpen);
-        document.addEventListener('touchstart', triggerAutomaticOpen);
-        document.addEventListener('scroll', triggerAutomaticOpen);
-    </script>
+        <!-- غطاء الظرف ومثبت به الختم الذهبي الصغير -->
