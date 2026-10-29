@@ -4,191 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aya & Mohamed | Wedding Invitation</title>
+    <!-- الأكواد الخاصة بالرابط وصورته عند المشاركة على واتساب -->
     <meta property="og:title" content="Aya & Mohamed | Wedding Invitation">
     <meta property="og:description" content="Celebrate Aya & Mohamed – Friday, January 21, 2027 at 7:00 PM">
-    <meta property="og:url" content="https://github.io">
-    <meta property="og:image" content="https://github.ioaya_mohamed.jpg">
-    <meta property="og:secure_url" content="https://github.ioaya_mohamed.jpg">
+    <meta property="og:url" content="https://Mohamed-Aya-invitation.github.io/Wedding/">
+    <meta property="og:image" content="https://github.io">
+    <meta property="og:secure_url" content="https://github.io">
     <meta property="og:type" content="website">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #fcfcfc;
+            background-color: #f5f2eb; /* خلفية ناعمة مناسبة لثيم الزفاف */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: system-ui, -apple-system, sans-serif;
             overflow: hidden;
-        }
-        .invitation-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            z-index: 1;
-        }
-        .invitation-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .location-btn {
-            position: absolute;
-            bottom: 17%;
-            left: 48%;
-            transform: translateX(-50%);
-            background-color: #4a1e1b;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 7px 0;
-            border-radius: 30px;
-            font-size: 7px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-            width: 120px;
-            text-align: center;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
-        /* ✉️ تصميم مجسم الظرف الحقيقي المطور */
-        .envelope-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background-color: #2b1110; /* خلفية عميقة خلف الظرف */
+        /* حاوية الظرف والورقة بالكامل */
+        .stage {
+            position: relative;
+            width: 390px;
+            height: 550px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: visibility 1s;
+            perspective: 1000px;
         }
-        
-        /* شكل مثلث الظرف العلوي */
-        .flap-top {
+
+        /* ✉️ هيكل ومجسم الظرف */
+        .envelope {
+            position: absolute;
+            bottom: 50px;
+            width: 360px;
+            height: 240px;
+            background-color: #3d1715; /* جسم الظرف الداخلي */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* جيب الظرف الأمامي والجوانب (لتغطية كارت الدعوة بالداخل) */
+        .envelope-front {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 50%;
-            background-color: #4a1e1b;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            border-bottom: 2px solid #5d2925;
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
-            transform-origin: top;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 40px;
-            box-sizing: border-box;
+            width: 0;
+            height: 0;
+            border-left: 180px solid #4a1e1b;
+            border-right: 180px solid #4a1e1b;
+            border-bottom: 120px solid #451b18;
+            border-top: 120px solid transparent;
+            z-index: 30; /* فوق الورقة وقبل الختم */
+            pointer-events: none;
         }
-        
-        /* شكل مثلث الظرف السفلي */
-        .flap-bottom {
+
+        /* غطاء الظرف العلوي (المثلث الذي يفتح لأعلى) */
+        .envelope-flap {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 51%;
-            background-color: #3d1715;
-            clip-path: polygon(0 100%, 100% 100%, 50% 0%);
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
-            transform-origin: bottom;
+            width: 0;
+            height: 0;
+            border-left: 180px solid transparent;
+            border-right: 180px solid transparent;
+            border-top: 130px solid #4a1e1b; /* الغطاء */
+            transform-origin: top;
+            transition: transform 0.6s ease, z-index 0.2s ease;
+            z-index: 40; /* يغطي كل شيء في البداية */
+            cursor: pointer;
         }
 
-        .envelope-text {
-            color: #d4af37;
-            font-size: 20px;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            z-index: 2;
-        }
-
-        /* 🟡 الختم الشمعي الدائري في المنتصف */
-        .open-seal-btn {
+        /* 🟡 الختم الشمعي الدائري لفتح الظرف */
+        .seal-button {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1);
+            top: -20px;
+            left: -45px; /* لتوسيطه تماماً فوق رأس المثلث */
             background: radial-gradient(circle, #f3e092 0%, #d4af37 100%);
             color: #4a1e1b;
             border: 2px solid #b89326;
-            width: 95px;
-            height: 95px;
+            width: 90px;
+            height: 90px;
             font-size: 13px;
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 10000;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             line-height: 1.3;
-            animation: pulse-glow 2s infinite;
-            transition: transform 0.3s, opacity 0.5s;
+            z-index: 50; /* في المقدمة تماماً ليكون قابلاً للضغط */
+            animation: pulse 2s infinite;
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes pulse-glow {
-            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            70% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
-        /* حركات فتح مثلثات الظرف الواقعية */
-        .envelope-wrapper.open .flap-top {
-            transform: rotateX(180deg) translateY(-100%);
-            opacity: 0;
+        /* 📜 الورقة (كارت الدعوة) المخفية بالداخل */
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            width: 330px;
+            height: 480px; /* طول الكارت */
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 20; /* متموضع خلف الجيب الأمامي وداخل الظرف */
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.4s ease;
+            transform: translateY(180px); /* البداية داخل الظرف */
+            border-radius: 4px;
+            overflow: hidden;
         }
-        .envelope-wrapper.open .flap-bottom {
-            transform: rotateX(-180deg) translateY(100%);
-            opacity: 0;
+
+        /* الصورة بداخل كارت الدعوة المرتفع */
+        .letter img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
-        .envelope-wrapper.open .open-seal-btn {
+
+        /* زر الموقع المدمج بالورقة */
+        .location-btn {
+            position: absolute;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4a1e1b;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        /* 📜 حركة فتح الظرف وخروج الكارت بالترتيب */
+        
+        /* 1. دوران غطاء الظرف لأعلى عند الفتح */
+        .stage.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 5; /* يعود للخلف بعد فتحه لتظهر الورقة صاعدة أمامه */
+        }
+
+        /* 2. خروج وصعود الورقة لأعلى من داخل الجيب وتكبيرها أمام الضيف */
+        .stage.open .letter {
+            transform: translateY(-100px) scale(1.1); /* الخروج والصعود فوق الظرف */
+            z-index: 100; /* تظهر في الواجهة فوق كل شيء */
+        }
+
+        /* 3. إخفاء زر الختم الشمعي بعد النقر عليه */
+        .stage.open .seal-button {
             opacity: 0;
             pointer-events: none;
+        }
+
+        /* العنوان العلوي قبل فتح الظرف */
+        .hint-text {
+            position: absolute;
+            top: 40px;
+            color: #4a1e1b;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            transition: opacity 0.5s ease;
+            z-index: 5;
+        }
+        .stage.open .hint-text {
+            opacity: 0;
         }
     </style>
 </head>
 <body>
 
-    <!-- ✉️ واجهة الظرف المثلثي الحقيقي -->
-    <div id="envelopeWrapper" class="envelope-wrapper">
-        <div class="flap-top">
-            <div class="envelope-text">دعوة زفاف خاصة</div>
+    <div class="hint-text">دعوة زفاف خاصة ✉️</div>
+
+    <!-- مسرح العرض ثلاثي الأبعاد -->
+    <div id="weddingStage" class="stage">
+        
+        <!-- غطاء الظرف ومثبت به زر الختم الذهبي -->
+        <div class="envelope-flap" id="flap">
+            <button class="seal-button" onclick="openWeddingEnvelope()">اضغط<br>لفتح الدعوة</button>
         </div>
-        <button class="open-seal-btn" id="sealBtn" onclick="openEnvelope()">اضغط<br>لفتح الدعوة</button>
-        <div class="flap-bottom"></div>
+        
+        <!-- جيب وبودي الظرف الرئيسي -->
+        <div class="envelope">
+            <div class="envelope-front"></div>
+        </div>
+
+        <!-- 📜 الورقة (كارت الدعوة المخبأ بالداخل) الذي سيصعد ويخرج -->
+        <div class="letter" id="letter">
+            <img src="aya_mohamed.jpg" alt="دعوة زفاف آية ومحمد">
+            
+            <!-- زر الخريطة بداخل كارت الدعوة المرفوع -->
+            <a href="https://goo.gl" class="location-btn">
+                TAP TO GET THE LOCATION 📍
+            </a>
+        </div>
     </div>
 
-    <div class="invitation-container">
-        <img src="aya_mohamed.jpg" alt="دعوة زفاف">
-        <a href="https://goo.gl" class="location-btn">
-            TAP TO GET THE LOCATION 📍
-        </a>
-    </div>
-
+    <!-- عنصر تشغيل الصوت المخفي -->
     <audio id="weddingAudio" loop preload="auto">
         <source src="wedding-music.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function openEnvelope() {
+        function openWeddingEnvelope() {
             const audio = document.getElementById('weddingAudio');
-            const wrapper = document.getElementById('envelopeWrapper');
+            const stage = document.getElementById('weddingStage');
 
-            audio.play().catch(error => console.log(error));
-            wrapper.classList.add('open');
+            // 1. تشغيل الموسيقى
+            audio.play().catch(error => console.log("تم حجب الصوت التلقائي:", error));
 
-            setTimeout(() => {
-                wrapper.style.visibility = 'hidden';
-                document.body.style.overflow = 'auto';
-            }, 1000);
+            // 2. تفعيل حركة الفتح المزدوجة (ينفتح الغطاء أولاً ثم تخرج الورقة صاعدة)
+            stage.classList.add('open');
         }
     </script>
 
