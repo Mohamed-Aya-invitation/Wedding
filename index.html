@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed & Aya | Wedding Invitation</title>
+
+    <!-- الأكواد السحرية الخاصة بظهور تفاصيل الدعوة والصورة المصغرة على واتساب -->
+    <meta property="og:title" content="Mohamed & Aya | Wedding Invitation">
+    <meta property="og:description" content="Celebrate Mohamed & Aya — Friday, January 22, 2027 at 7:00 PM.">
+    <meta property="og:url" content="https://Mohamed-Aya-invitation.github.io/Wedding/" />
+    <meta property="og:image" content="https://Mohamed-Aya-invitation.github.io/Wedding/aya_mohamed.jpg" />
+    <meta property="og:image:secure_url" content="https://Mohamed-Aya-invitation.github.io/Wedding/aya_mohamed.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="500">
+    <meta property="og:type" content="website">
+
+    <!-- وسوم منع التخزين المؤقت لضمان التحديث الفوري -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        
+        /* إعدادات الخلفية العامة */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #bc766c; /* اللون الوردي الداكن المحيط */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
+            overflow: hidden;
+            position: fixed;
+        }
+        
+        /* حاوية التصميم لتلائم شاشات الهواتف بالكامل بدون حواف جانبية */
+        .invitation-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100dvh !important; /* جعل الحاوية بطول الشاشة بالكامل */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* دفع العناصر إلى الأعلى تماماً */
+            align-items: center;
+            padding: 0 0 10px 0; /* إلغاء الحافة العلوية والجانبية نهائياً */
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+        }
+
+        /* تنسيق الصورة لتملأ الشاشة وتغطي الخلفية بالكامل */
+        .card-image {
+            width: 100%;
+            height: 82dvh !important; /* إعطاء الصورة أقصى ارتفاع ممكن فوق الزر */
+            object-fit: cover; /* فرد وتمديد الصورة لملء الشاشة وإخفاء الحواف الرمادية */
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* زر الموقع الجغرافي */
+        .location-btn {
+            display: inline-block;
+            position: absolute;
+            width: 45%;
+            bottom: 19%;
+            left: 48%;
+            transform: translateX(-50%);
+            background-color: #4a1e1b; /* اللون العنابي الداكن للزر */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 7px 0;
+            border-radius: 30px;
+            font-size: 7px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        .location-btn:hover {
+            background-color: #361412;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <!-- استبدل اسم الصورة بملف التصميم الخاص بك -->
+        <img src="aya_mohamed.jpg" alt="دعوة زفاف" class="card-image">
+        
+        <!-- زر التوجيه إلى خرائط جوجل -->
+        <a href="https://maps.app.goo.gl/WSHpvfMFUcKHvm1d7?g_st=ic" target="_blank" class="location-btn">
+            TAP TO GET THE LOCATION 📍
+        </a>
+    </div>
+<audio id="weddingAudio" loop preload="auto">
+    <source src="wedding-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById('weddingAudio');
+    function playMusic() {
+        audio.play().then(() => {
+            removeAllListeners();
+        }).catch(error => {
+            console.log("المتصفح ينتظر التفاعل");
+        });
+    }
+    function handleUserInteraction() {
+        playMusic();
+    }
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction); 
+    document.addEventListener('scroll', handleUserInteraction);     
+    window.addEventListener('keydown', handleUserInteraction);      
+    function removeAllListeners() {
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('scroll', handleUserInteraction);
+        window.removeEventListener('keydown', handleUserInteraction);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        playMusic();
+    });
+</script>
+
+</body>
+</html>
