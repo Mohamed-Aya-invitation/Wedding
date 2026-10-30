@@ -28,13 +28,12 @@
             width: 100%;
         }
         
-        /* حاوية الأبعاد وتفعيل العمق المنظوري للحركة ثلاثية الأبعاد */
         .phone-wrapper {
             width: 100%;
             max-width: 400px;
             height: 85dvh;
             position: relative;
-            perspective: 1800px; /* لضمان تأثير دوران حقيقي ثلاثي الأبعاد للأطراف والخلفية */
+            perspective: 1800px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,7 +47,7 @@
             transition: transform 0.5s ease;
         }
 
-        /* التصميم الداخلي الساكن (كارت الأكريليك) المستقر بالخلفية */
+        /* كارت الأكريليك الداخلي الساكن */
         .invitation-body {
             position: absolute;
             top: 0;
@@ -92,7 +91,7 @@
             text-align: center;
         }
 
-        /* هيكلية الأطراف الأربعة التفاعلية للمغلف الخارجي */
+        /* هيكلية الأطراف التفاعلية للمغلف */
         .flap {
             position: absolute;
             background-color: #f3eee5;
@@ -101,7 +100,6 @@
             box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
         }
 
-        /* الأجنحة الجانبية (الأبواب يمين ويسار) */
         .flap-left {
             top: 0;
             left: 0;
@@ -124,7 +122,6 @@
             z-index: 5;
         }
 
-        /* المثلثات العلوية والسفلية الفاخرة */
         .flap-top {
             top: 0;
             left: 0;
@@ -147,43 +144,94 @@
             z-index: 6;
         }
 
-        /* الشريط الرمادي المنقسم والمثبت على واجهة الأبواب الجانبية */
+        /* الشريط العمودي الرمادي الأساسي */
         .ribbon-half {
             position: absolute;
             top: 0;
-            width: 16px;
+            width: 18px;
             height: 100%;
             background-color: #cbd5e1;
             box-shadow: 0 0 8px rgba(0,0,0,0.05);
         }
+        .flap-left .ribbon-half { right: 0; }
+        .flap-right .ribbon-half { left: 0; }
 
-        .flap-left .ribbon-half {
-            right: 0;
+        /* تجميعة "الربطة الفيونكة الساتان" الخارجية والسنتر */
+        .bow-master {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 40px;
+            z-index: 10; /* فوق كل الضلف */
+            transition: all 0.6s ease;
+            pointer-events: none;
         }
 
-        .flap-right .ribbon-half {
-            left: 0;
+        /* مركز العقدة الدائري الوسطي */
+        .bow-knot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 22px;
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 12;
         }
 
-        /* كود التحول والفتح الحقيقي بمحاكاة ثلاثية الأبعاد خاضعة لمركز التدوير الفعلي */
-        .envelope-container.open .flap-left {
-            transform: rotateY(-145deg);
-            z-index: 2;
+        /* أجنحة الفيونكة يمين ويسار */
+        .bow-loop {
+            position: absolute;
+            top: 10px;
+            width: 40px;
+            height: 24px;
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        }
+        .bow-loop.left {
+            left: 5px;
+            transform: rotate(-15deg);
+        }
+        .bow-loop.right {
+            right: 5px;
+            transform: rotate(15deg) scaleX(-1);
         }
 
-        .envelope-container.open .flap-right {
-            transform: rotateY(145deg);
-            z-index: 2;
+        /* الأشرطة المتدلية لأسفل الفيونكة */
+        .bow-tail {
+            position: absolute;
+            top: 26px;
+            width: 12px;
+            height: 35px;
+            background-color: #cbd5e1;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+        }
+        .bow-tail.left {
+            left: 28px;
+            transform: rotate(20deg);
+        }
+        .bow-tail.right {
+            right: 28px;
+            transform: rotate(-20deg);
         }
 
-        .envelope-container.open .flap-top {
-            transform: rotateX(145deg);
-            z-index: 2;
-        }
-
-        .envelope-container.open .flap-bottom {
-            transform: rotateX(-145deg);
-            z-index: 2;
+        /* حركات التفاعل والفتح الكلي */
+        .envelope-container.open .flap-left { transform: rotateY(-145deg); z-index: 2; }
+        .envelope-container.open .flap-right { transform: rotateY(145deg); z-index: 2; }
+        .envelope-container.open .flap-top { transform: rotateX(145deg); z-index: 2; }
+        .envelope-container.open .flap-bottom { transform: rotateX(-145deg); z-index: 2; }
+        
+        /* تفعيل اختفاء وانشقاق الفيونكة عند الفتح */
+        .envelope-container.open .bow-master {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.4);
         }
 
         .hint-text {
@@ -203,7 +251,7 @@
     <div class="phone-wrapper">
         <div class="envelope-container" id="envelope">
             
-            <!-- محتوى كارت الزفاف بالأكريليك بالأسفل أولاً ليدعم الترتيب المنظوري الصحيح -->
+            <!-- محتوى كارت الزفاف بالأكريليك بالأسفل -->
             <div class="invitation-body">
                 <img src="aya_mohamed.jpg" alt="دعوة زفاف محمد وآية" class="card-image">
                 <a href="https://goo.gl" target="_blank" class="location-btn">
@@ -222,12 +270,21 @@
                 <div class="ribbon-half"></div>
             </div>
 
+            <!-- تجميعة الفيونكة الساتان الرمادية المتمركزة بالمنتصف -->
+            <div class="bow-master">
+                <div class="bow-knot"></div>
+                <div class="bow-loop left"></div>
+                <div class="bow-loop right"></div>
+                <div class="bow-tail left"></div>
+                <div class="bow-tail right"></div>
+            </div>
+
         </div>
         
         <div class="hint-text" id="hint">✨ اضغط على المغلف لفتح الدعوة</div>
     </div>
 
-    <!-- كود الصوت التفاعلي -->
+    <!-- كود الصوت التفاعلي الخلفي -->
     <audio id="weddingAudio" loop preload="auto">
         <source src="wedding-music.mp3" type="audio/mpeg">
     </audio>
@@ -241,7 +298,7 @@
             envelope.classList.toggle('open');
             if(envelope.classList.contains('open')) {
                 hint.style.opacity = '0';
-                audio.play().catch(() => console.log("بانتظار تفاعل إضافي لتأكيد الصوت"));
+                audio.play().catch(() => console.log("بانتظار تفاعل إضافي لتأكيد تشغيل الصوت"));
             } else {
                 hint.style.opacity = '1';
             }
