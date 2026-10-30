@@ -5,28 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed & Aya | Wedding Invitation</title>
 
-    <!-- الأكواد الخاصة بظهور تفاصيل الدعوة والصورة المصغرة على واتساب -->
+    <!-- تفاصيل الدعوة على الواتساب والمواقع المرجعية -->
     <meta name="description" content="Celebrate Mohamed & Aya — Friday, January 22, 2027 at 7:00 PM.">
     <meta property="og:title" content="Mohamed & Aya | Wedding Invitation">
     <meta property="og:description" content="Celebrate Mohamed & Aya — Friday, January 22, 2027 at 7:00 PM.">
     <meta property="og:url" content="https://github.io" />
     <meta property="og:image" content="https://github.ioaya_mohamed.jpg" />
-    <meta property="og:image:secure_url" content="https://github.ioaya_mohamed.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="500">
     <meta property="og:type" content="website">
 
-    <!-- وسوم منع التخزين المؤقت لضمان التحديث الفوري -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #f5ebe0, #e3d5ca);
+            background: #f0ebe4;
             font-family: 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
@@ -37,12 +28,13 @@
             width: 100%;
         }
         
+        /* حاوية الأبعاد وتفعيل العمق المنظوري للحركة ثلاثية الأبعاد */
         .phone-wrapper {
             width: 100%;
-            max-width: 420px;
-            height: 90dvh;
+            max-width: 400px;
+            height: 85dvh;
             position: relative;
-            perspective: 2000px;
+            perspective: 1800px; /* لضمان تأثير دوران حقيقي ثلاثي الأبعاد للأطراف والخلفية */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -50,115 +42,36 @@
 
         .envelope-container {
             width: 90%;
-            height: 80dvh;
+            height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            background-color: #fdfbf7;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            cursor: pointer;
+            transition: transform 0.5s ease;
         }
 
-        /* بوابات المغلف الجانبية (يمين ويسار) المصممة على شكل زوايا مطوية */
-        .gate {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            background-color: #f4efe6;
-            z-index: 5;
-            transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .gate-left {
-            left: 0;
-            transform-origin: left;
-            border-radius: 8px 0 0 8px;
-            clip-path: polygon(0 0, 100% 35%, 100% 65%, 0 100%);
-        }
-
-        .gate-right {
-            right: 0;
-            transform-origin: right;
-            border-radius: 0 8px 8px 0;
-            clip-path: polygon(100% 0, 0 35%, 0 65%, 100% 100%);
-        }
-
-        /* المثلثات العلوية والسفلية الفاخرة المكملة لهيكل الـ Gatefold */
-        .flap {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 35%;
-            background-color: #ede6da;
-            z-index: 6;
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .flap-top {
-            top: 0;
-            transform-origin: top;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            border-radius: 8px 8px 0 0;
-        }
-
-        .flap-bottom {
-            bottom: 0;
-            transform-origin: bottom;
-            clip-path: polygon(50% 0, 100% 100%, 0 100%);
-            border-radius: 0 0 8px 8px;
-        }
-
-        /* تصميم أجزاء الشريط الرمادي الرأسي القابل للانقسام */
-        .ribbon-half {
-            position: absolute;
-            top: 0;
-            width: 20px;
-            height: 100%;
-            background-color: #cbd5e1;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-            transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 7;
-        }
-
-        .gate-left .ribbon-half {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .gate-right .ribbon-half {
-            left: 0;
-            border-radius: 0 3px 3px 0;
-        }
-
-        /* كارت الأكريليك الداخلي للدعوة */
+        /* التصميم الداخلي الساكن (كارت الأكريليك) المستقر بالخلفية */
         .invitation-body {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
-            transform: scale(0.93);
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             background-color: #bc766c;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .card-image {
             width: 100%;
             height: 82dvh !important;
             object-fit: cover;
-            border-radius: 8px;
         }
         
-        /* زر الموقع الجغرافي */
         .location-btn {
             display: inline-block;
             position: absolute;
@@ -174,14 +87,103 @@
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.3s ease;
-            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 99;
             text-align: center;
         }
 
-        .location-btn:hover {
-            background-color: #361412;
+        /* هيكلية الأطراف الأربعة التفاعلية للمغلف الخارجي */
+        .flap {
+            position: absolute;
+            background-color: #f3eee5;
+            transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.5s;
+            transform-style: preserve-3d;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
+        }
+
+        /* الأجنحة الجانبية (الأبواب يمين ويسار) */
+        .flap-left {
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            transform-origin: left center;
+            border-radius: 12px 0 0 12px;
+            clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%);
+            z-index: 5;
+        }
+
+        .flap-right {
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            transform-origin: right center;
+            border-radius: 0 12px 12px 0;
+            clip-path: polygon(100% 0, 0 25%, 0 75%, 100% 100%);
+            z-index: 5;
+        }
+
+        /* المثلثات العلوية والسفلية الفاخرة */
+        .flap-top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            transform-origin: center top;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            border-radius: 12px 12px 0 0;
+            z-index: 6;
+        }
+
+        .flap-bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            transform-origin: center bottom;
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+            border-radius: 0 0 12px 12px;
+            z-index: 6;
+        }
+
+        /* الشريط الرمادي المنقسم والمثبت على واجهة الأبواب الجانبية */
+        .ribbon-half {
+            position: absolute;
+            top: 0;
+            width: 16px;
+            height: 100%;
+            background-color: #cbd5e1;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        .flap-left .ribbon-half {
+            right: 0;
+        }
+
+        .flap-right .ribbon-half {
+            left: 0;
+        }
+
+        /* كود التحول والفتح الحقيقي بمحاكاة ثلاثية الأبعاد خاضعة لمركز التدوير الفعلي */
+        .envelope-container.open .flap-left {
+            transform: rotateY(-145deg);
+            z-index: 2;
+        }
+
+        .envelope-container.open .flap-right {
+            transform: rotateY(145deg);
+            z-index: 2;
+        }
+
+        .envelope-container.open .flap-top {
+            transform: rotateX(145deg);
+            z-index: 2;
+        }
+
+        .envelope-container.open .flap-bottom {
+            transform: rotateX(-145deg);
+            z-index: 2;
         }
 
         .hint-text {
@@ -191,34 +193,8 @@
             transform: translateX(-50%);
             font-size: 13px;
             color: #71717a;
-            animation: pulse 1.5s infinite;
-            pointer-events: none;
             white-space: nowrap;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-
-        /* طقوس الحركة الشاملة للفتح الفوري للمغلف الفاخر */
-        .envelope-container.open .gate-left {
-            transform: rotateY(-135deg);
-        }
-        .envelope-container.open .gate-right {
-            transform: rotateY(135deg);
-        }
-        .envelope-container.open .flap-top {
-            transform: rotateX(125deg);
-            z-index: 1;
-        }
-        .envelope-container.open .flap-bottom {
-            transform: rotateX(-125deg);
-            z-index: 1;
-        }
-        .envelope-container.open .invitation-body {
-            transform: scale(1);
+            pointer-events: none;
         }
     </style>
 </head>
@@ -227,36 +203,31 @@
     <div class="phone-wrapper">
         <div class="envelope-container" id="envelope">
             
-            <!-- الطية العلوية للمغلف -->
-            <div class="flap flap-top"></div>
-            
-            <!-- الطية السفلية للمغلف -->
-            <div class="flap flap-bottom"></div>
-            
-            <!-- البوابة اليسرى مع نصف الشريط الرمادي -->
-            <div class="gate gate-left">
-                <div class="ribbon-half"></div>
-            </div>
-            
-            <!-- البوابة اليمنى مع نصف الشريط الرمادي -->
-            <div class="gate gate-right">
-                <div class="ribbon-half"></div>
-            </div>
-            
-            <!-- محتوى الكارت الفاخر بداخل المغلف -->
+            <!-- محتوى كارت الزفاف بالأكريليك بالأسفل أولاً ليدعم الترتيب المنظوري الصحيح -->
             <div class="invitation-body">
                 <img src="aya_mohamed.jpg" alt="دعوة زفاف محمد وآية" class="card-image">
-                
                 <a href="https://goo.gl" target="_blank" class="location-btn">
                     TAP TO GET THE LOCATION 📍
                 </a>
             </div>
+
+            <!-- أجنحة وأبواب الفتح التفاعلية للمغلف -->
+            <div class="flap flap-top"></div>
+            <div class="flap flap-bottom"></div>
+            
+            <div class="flap flap-left">
+                <div class="ribbon-half"></div>
+            </div>
+            <div class="flap flap-right">
+                <div class="ribbon-half"></div>
+            </div>
+
         </div>
         
-        <div class="hint-text" id="hint">اضغط على المغلف لفتح الدعوة ✨</div>
+        <div class="hint-text" id="hint">✨ اضغط على المغلف لفتح الدعوة</div>
     </div>
 
-    <!-- ملف الصوت التفاعلي للزفاف -->
+    <!-- كود الصوت التفاعلي -->
     <audio id="weddingAudio" loop preload="auto">
         <source src="wedding-music.mp3" type="audio/mpeg">
     </audio>
@@ -268,20 +239,13 @@
         
         envelope.addEventListener('click', () => {
             envelope.classList.toggle('open');
-            
             if(envelope.classList.contains('open')) {
-                hint.style.display = 'none';
-                playMusic();
+                hint.style.opacity = '0';
+                audio.play().catch(() => console.log("بانتظار تفاعل إضافي لتأكيد الصوت"));
             } else {
-                hint.style.display = 'block';
+                hint.style.opacity = '1';
             }
         });
-        
-        function playMusic() {
-            audio.play().catch(error => {
-                console.log("المتصفح ينتظر نقرة إضافية لتفعيل الصوتيات.");
-            });
-        }
     </script>
 
 </body>
