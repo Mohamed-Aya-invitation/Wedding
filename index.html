@@ -1,143 +1,328 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed & Aya | Wedding Invitation</title>
-
-    <!-- الأكواد الخاصة بظهور تفاصيل الدعوة والصورة المصغرة على واتساب -->
-    <meta name="description" content="Celebrate Mohamed & Aya — Friday, January 22, 2027 at 7:00 PM.">
-    <meta property="og:title" content="Mohamed & Aya | Wedding Invitation">
-    <meta property="og:description" content="Celebrate Mohamed & Aya — Friday, January 22, 2027 at 7:00 PM.">
-    <meta property="og:url" content="https://Mohamed-Aya-invitation.github.io/Wedding/" />
-    <meta property="og:image" content="https://Mohamed-Aya-invitation.github.io/Wedding/aya_mohamed.jpg" />
-    <meta property="og:image:secure_url" content="https://Mohamed-Aya-invitation.github.io/Wedding/aya_mohamed.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="500">
-    <meta property="og:type" content="website">
-
-    <!-- وسوم منع التخزين المؤقت لضمان التحديث الفوري -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
+    <title>دعوة زفاف إلكترونية</title>
     <style>
-        /* إعدادات الخلفية العامة */
-        body {
+        :root {
+            --bg-color: #f7ede2;
+            --envelope-color: #fffaf0;
+            --ribbon-color: #d1d5db;
+            --text-color: #2c3e50;
+            --accent-color: #1a365d;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #bc766c; /* اللون الوردي الداكن المحيط */
+        }
+
+        body {
+            background-color: var(--bg-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100dvh;
+            min-height: 100vh;
             overflow: hidden;
-            position: fixed;
-            width: 100%;
+            perspective: 1500px;
         }
-        
-        /* حاوية التصميم لتلائم شاشات الهواتف بالكامل بدون حواف جانبية */
-        .invitation-container {
+
+        /* حاوية الهاتف الذكي المحاكية للفيديو */
+        .phone-container {
             width: 100%;
-            max-width: 450px;
-            height: 100dvh !important; /* جعل الحاوية بطول الشاشة بالكامل */
+            max-width: 412px;
+            height: 100vh;
+            max-height: 892px;
+            background-color: #000;
+            position: relative;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* دفع العناصر إلى الأعلى تماماً */
+            justify-content: center;
             align-items: center;
-            padding: 0 0 10px 0; /* إلغاء الحافة العلوية والجانبية نهائياً */
-            box-sizing: border-box;
-            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (min-width: 450px) {
+            .phone-container {
+                border-radius: 40px;
+                border: 12px solid #1f2937;
+                height: 85vh;
+            }
+        }
+
+        /* مساحة العمل الداخلية لشاشة الهاتف */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #f3e7e9 0%, #e3eeff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
         }
 
-        /* تنسيق الصورة لتملأ الشاشة وتغطي الخلفية بالكامل */
-        .card-image {
-            width: 100%;
-            height: 82dvh !important; /* إعطاء الصورة أقصى ارتفاع ممكن فوق الزر */
-            object-fit: cover; /* فرد وتمديد الصورة لملء الشاشة وإخفاء الحواف الرمادية */
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            position: absolute;
-            top: 0;
-        }
-        
-        /* زر الموقع الجغرافي */
-        .location-btn {
-            display: inline-block;
-            position: absolute;
-            width: 55%;
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4a1e1b; /* اللون العنابي الداكن للزر */
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px 0;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.3s ease;
-            z-index: 9999;
+        /* المغلف الأساسي */
+        .envelope-wrapper {
+            position: relative;
+            width: 85%;
+            height: 70%;
+            cursor: pointer;
+            transition: transform 0.8s ease;
         }
 
-        .location-btn:hover {
-            background-color: #361412;
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: var(--envelope-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            overflow: visible;
+        }
+
+        /* الطيات الخلفية والجانبية للمغلف (Origami Style) */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: 
+                linear-gradient(315deg, transparent 50%, rgba(0,0,0,0.02) 50%),
+                linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.02) 50%);
+            z-index: 2;
+        }
+
+        /* الطية العلوية للمغلف */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: var(--envelope-color);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out z-index 0.6s;
+            z-index: 6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* الطيات الجانبية والسفلية المتقاطعة كمثلثات */
+        .left-flap {
+            position: absolute;
+            left: 0; top: 0; width: 50%; height: 100%;
+            background-color: #fffefe;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            z-index: 4;
+        }
+
+        .right-flap {
+            position: absolute;
+            right: 0; top: 0; width: 50%; height: 100%;
+            background-color: #fffefe;
+            clip-path: polygon(100% 0, 100% 100%, 0 50%);
+            z-index: 4;
+        }
+
+        .bottom-flap {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background-color: #fdfbf7;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 5;
+        }
+
+        /* الشريط الحريري (الستان) الفضي الرمادي */
+        .ribbon-v, .ribbon-h {
+            position: absolute;
+            background-color: var(--ribbon-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 7;
+            transition: opacity 0.4s ease 0.2s, transform 0.4s ease;
+        }
+
+        .ribbon-v {
+            left: 50%;
+            top: 0;
+            width: 35px;
+            height: 100%;
+            transform: translateX(-50%);
+        }
+
+        .ribbon-h {
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            transform: translateY(-50%);
+        }
+
+        /* الفيونكة المركزية */
+        .bow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70px;
+            height: 40px;
+            background-color: var(--ribbon-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 8;
+            transition: opacity 0.3s ease, transform 0.4s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .bow::before, .bow::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: var(--ribbon-color);
+            border-radius: 50%;
+            top: 2px;
+            box-shadow: inset -4px -4px 10px rgba(0,0,0,0.1);
+        }
+
+        .bow::before { left: -20px; }
+        .bow::after { right: -20px; }
+
+        /* نص "إضغط لفتح الدعوة" المتوهج بشكل ناعم الأسفل */
+        .tap-instruction {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #718096;
+            letter-spacing: 2px;
+            animation: pulse 1.8s infinite;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-4px); }
+            100% { opacity: 0.4; transform: translateY(0); }
+        }
+
+        /* كارت الدعوة الداخلي المزين بنقوش وردية ملكية */
+        .letter {
+            position: absolute;
+            top: 5px;
+            left: 5%;
+            width: 90%;
+            height: 98%;
+            background-color: #fff;
+            /* نقوش وردية كلاسيكية زرقاء وخلفية زهرية ناعمة تحاكي الفيديو */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #e2e8f0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 3;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* الإطار الداخلي الأنيق المحيط بالنصوص */
+        .letter-border {
+            border: 2px solid var(--accent-color);
+            width: 100%;
+            height: 100%;
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+        }
+
+        .letter h1 {
+            font-family: 'Cairo', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .letter .names {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #b7791f;
+            margin: 10px 0;
+        }
+
+        .letter p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .letter .date {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 8px 0;
+            margin-top: 10px;
+        }
+
+        /* 🎬 وضعية تفعيل التأثير الحركي والفتح (عند الضغط عبر الـ JS) */
+        
+        /* 1. إخفاء الأشرطة والفيونكة أولاً بانزلاق ناعم */
+        .envelope-wrapper.open .ribbon-v {
+            transform: translateX(-50%) scaleY(0);
+            opacity: 0;
+        }
+        .envelope-wrapper.open .ribbon-h {
+            transform: translateY(-50%) scaleX(0);
+            opacity: 0;
+        }
+        .envelope-wrapper.open .bow {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        /* 2. فتح غطاء المغلف العلوي لأعلى بكامل مساحته */
+        .envelope-wrapper.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+            transition: transform 0.5s ease-in-out, z-index 0.1s linear 0.2s;
+        }
+
+        /* 3. خروج صعود كارت الدعوة لأعلى ليغطي الواجهة بوضوح */
+        .envelope-wrapper.open .letter {
+            transform: translateY(-40%) scale(1.05);
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .envelope-wrapper.open .tap-instruction {
+            opacity: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="invitation-container">
-        <!-- اسم الصورة الخاص بملف التصميم -->
-        <img src="aya_mohamed.jpg" alt="دعوة زفاف" class="card-image">
-        
-        <!-- زر التوجيه إلى خرائط جوجل -->
-        <a href="https://goo.gl" target="_blank" class="location-btn">
-            TAP TO GET THE LOCATION 📍
-        </a>
-    </div>
-
-    <!-- ملف الصوت التفاعلي للزفاف -->
-    <audio id="weddingAudio" loop preload="auto">
-        <source src="wedding-music.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        const audio = document.getElementById('weddingAudio');
-        
-        function playMusic() {
-            audio.play().then(() => {
-                removeAllListeners();
-            }).catch(error => {
-                console.log("المتصفح ينتظر التفاعل لتشغيل الصوت");
-            });
-        }
-        
-        function handleUserInteraction() {
-            playMusic();
-        }
-        
-        document.addEventListener('click', handleUserInteraction);
-        document.addEventListener('touchstart', handleUserInteraction); 
-        document.addEventListener('scroll', handleUserInteraction);     
-        window.addEventListener('keydown', handleUserInteraction);      
-        
-        function removeAllListeners() {
-            document.removeEventListener('click', handleUserInteraction);
-            document.removeEventListener('touchstart', handleUserInteraction);
-            document.removeEventListener('scroll', handleUserInteraction);
-            window.removeEventListener('keydown', handleUserInteraction);
-        }
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            playMusic();
-        });
-    </script>
-
-</body>
-</html>
+    <!-- الهيكل الخارجي للهاتف الذكي لتطابق التجربة -->
+    <div class="phone-container">
+        <div class="screen">
+            
+            <!-- الحاوية التفاعلية للمغلف والدعوة -->
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope">
+                    
+                    <!-- الأشرطة الحريرية والفيونكة الخارجية -->
+                    <div class="ribbon-v"></div>
