@@ -52,6 +52,9 @@
             box-sizing: border-box;
             text-align: center;
             position: relative;
+            -webkit-user-select: none; /* يمنع ظهور مؤشر التحديد الأزرق وقائمة النسخ في متصفحات السفاري والكروم */
+            user-select: none;         /* يمنع التحديد في المتصفحات القياسية */
+            -webkit-tap-highlight-color: transparent; /* يلغي الوميض الأزرق تماماً عند النقر على الزر */
         }
 
         /* تنسيق الصورة لتملأ الشاشة وتغطي الخلفية بالكامل */
